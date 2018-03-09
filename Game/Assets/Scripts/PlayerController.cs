@@ -5,34 +5,47 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     Rigidbody rigidbody;
-    AudioSource audioSource;
+    AudioSource primaryFireSound;
+    AudioSource secondaryFireSound;
 
     public float speed;
     public float tilt;
-    public float fireRate;
+    public float primaryFireRate;
+    public float secondaryFireRate;
 
     public Boundary boundary;
-    public GameObject shot;
+    public GameObject primaryShot;
+    public GameObject secondaryShot;
     public Transform shotSpawn;
 
 
 
-    private float nextFire;
+    private float nextPrimaryFire;
+    private float nextSecondaryFire;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        primaryFireSound = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time > nextFire)
+        if (Input.GetMouseButton(0) && Time.time > nextPrimaryFire)
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            nextPrimaryFire = Time.time + primaryFireRate;
+            Instantiate(primaryShot, shotSpawn.position, shotSpawn.rotation);
 
-            audioSource.Play();
+            primaryFireSound.Play();
+        }
+
+        if (Input.GetMouseButton(1) && Time.time > nextSecondaryFire)
+        {
+            nextSecondaryFire = Time.time + secondaryFireRate;
+            Instantiate(secondaryShot, shotSpawn.position, shotSpawn.rotation);
+
+            secondaryFireSound.Play();
+
         }
 
     }
