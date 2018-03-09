@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
             nextSecondaryFire = Time.time + secondaryFireRate;
             Instantiate(secondaryShot, shotSpawn.position, shotSpawn.rotation);
 
-            secondaryFireSound.Play();
+           //secondaryFireSound.Play();
 
         }
 

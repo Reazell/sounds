@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour {
 
@@ -13,6 +15,12 @@ public class GameController : MonoBehaviour {
     public float startWait;
     public float waveWait;
 
+    public AudioMixer audioMixer;
+    public AudioMixerSnapshot GameSnap;
+    public AudioMixerSnapshot GameOverSnap;
+    public AudioMixerSnapshot MenuSnap;
+
+
     public static int scoreValue = 0;
     public static int playerHealth = 1;
     #endregion
@@ -22,6 +30,11 @@ public class GameController : MonoBehaviour {
     private string gameOver = "";
     private string reset = "";
     private string author = "";
+
+
+    private bool isGame;
+    private bool isGameOver;
+    private bool isMenu;
     #endregion
 
     #region GUI Variables
@@ -41,6 +54,9 @@ public class GameController : MonoBehaviour {
         playerHealth = 1;
         scoreValue = 0;
 
+        isGame = true;
+        isGameOver = false;
+        isMenu = false;
         #region GeneralGUI Settings
         guiStyle.normal.textColor = Color.white;
         guiStyle.fontSize = 32;
@@ -60,6 +76,9 @@ public class GameController : MonoBehaviour {
         score = "Score: " + scoreValue;
         if(GameController.playerHealth == 0)
         {
+            isGame = false;
+            isGameOver = true;
+            isMenu = false;
             gameOver = "Game Over!";
             reset = "Press 'R' to RESET";
             author = "By Szymon Przybyszewski";
@@ -71,6 +90,24 @@ public class GameController : MonoBehaviour {
             {
                 SceneManager.LoadScene(0);
             }
+        }
+
+        if(isGame == true)
+        {
+            GameSnap.TransitionTo(.1f);
+            Debug.Log(GameSnap.name);
+        }
+
+        if(isGameOver == true)
+        {
+            GameOverSnap.TransitionTo(.1f);
+            Debug.Log(GameOverSnap.name);
+        }
+
+        if (isMenu == true)
+        {
+            MenuSnap.TransitionTo(.1f);
+            Debug.Log(MenuSnap.name);
         }
 
     }
