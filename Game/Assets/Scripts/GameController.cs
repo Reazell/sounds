@@ -95,19 +95,16 @@ public class GameController : MonoBehaviour {
         if(isGame == true)
         {
             GameSnap.TransitionTo(.1f);
-            Debug.Log(GameSnap.name);
         }
 
         if(isGameOver == true)
         {
             GameOverSnap.TransitionTo(.1f);
-            Debug.Log(GameOverSnap.name);
         }
 
         if (isMenu == true)
         {
             MenuSnap.TransitionTo(.1f);
-            Debug.Log(MenuSnap.name);
         }
 
     }

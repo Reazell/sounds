@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     AudioSource primaryFireSound;
     AudioSource secondaryFireSound;
 
+    #region Public Variables
     public float speed;
     public float tilt;
     public float primaryFireRate;
@@ -17,12 +18,12 @@ public class PlayerController : MonoBehaviour {
     public GameObject primaryShot;
     public GameObject secondaryShot;
     public Transform shotSpawn;
+    #endregion
 
-
-
+    #region Private Variables
     private float nextPrimaryFire;
     private float nextSecondaryFire;
-
+    #endregion
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -43,8 +44,6 @@ public class PlayerController : MonoBehaviour {
         {
             nextSecondaryFire = Time.time + secondaryFireRate;
             Instantiate(secondaryShot, shotSpawn.position, shotSpawn.rotation);
-
-           //secondaryFireSound.Play();
 
         }
 
